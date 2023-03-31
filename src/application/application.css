@@ -1,0 +1,33 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.canvas {
+    -fx-background-color: #272727;
+}
+
+.button {
+    -fx-background-color: #c0c0c0;
+    -fx-font-size: 14pt;
+    
+}
+
+.button:hover {
+    -fx-background-color: #a0a0a0;
+}
+
+#score {
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+    -fx-fill: white;
+}
+
+#gameover {
+    -fx-font-size: 48pt;
+    -fx-fill: #ff6666;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 5, 0.0 , 1 , 1 );
+}
+#score {
+    -fx-font-size: 20pt;
+    -fx-font-weight:bold;
+    -fx-fill: white;
+}
+
+
