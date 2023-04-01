@@ -27,7 +27,6 @@ public class Snake extends Application {
 	static int foodX = 0;
 	static int foodY = 0;
 	static int cornersize = 25;
-	static int score;
 	static List<Corner> snake = new ArrayList<>();
 	static Dir direction = Dir.left;
 	static boolean gameOver = false;
@@ -172,8 +171,7 @@ public class Snake extends Application {
 	    // score
 	    gc.setFill(Color.CORAL);
 	    gc.setFont(Font.font("", FontWeight.BOLD, 20));
-	    score = (snake.size() - 3);
-	    gc.fillText("Score: " + score , 5, 20);
+	    gc.fillText("Score: " + (snake.size() - 3), 5, 20);
 	    Text scoreText = new Text("Score: " + (snake.size() - 3));
 	    scoreText.setId("score");
 
@@ -229,13 +227,9 @@ public class Snake extends Application {
 				}
 			}
 			foodcolor = rand.nextInt(5);
-			if (score%5==0) {
-				speed-=3;
-				break;
-			} else {
-				speed++;
-				break;
-			}
+			speed++;
+			break;
+
 		}
 	}
 
