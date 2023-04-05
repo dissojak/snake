@@ -32,6 +32,7 @@ public class Snake extends Application {
 	static boolean gameOver = false;
 	static Random rand = new Random();
 
+	//keys
 	public enum Dir {
 		left, right, up, down
 	}
@@ -156,22 +157,32 @@ public class Snake extends Application {
 	        snake.add(new Corner(-1, -1));
 	        newFood();
 	    }
-
-	    // self destroy
-	    for (int i = 1; i < snake.size(); i++) {
-	        //if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y && snake.get(0).x != snake.get(1).x && snake.get(0).y != snake.get(1).y) {
-	        if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y) {
-	            gameOver = true;
-	        }
-	    }
 	    
-	    // score
+	 // score
 	    gc.setFill(Color.CORAL);
 	    gc.setFont(Font.font("", FontWeight.BOLD, 20));
 	    int score=(snake.size() - 3);
 	    gc.fillText("Score: " + score, 5, 20);
 	    Text scoreText = new Text("Score: " + (snake.size() - 3));
 	    scoreText.setId("score");
+
+	    // self destroy (seconde lvl)
+	    if(score<10) {
+		    for (int i = 1; i < snake.size(); i++) {
+		        if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y && snake.get(0).x != snake.get(1).x && snake.get(0).y != snake.get(1).y) {
+		        //if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y) {
+		            gameOver = true;
+		        }
+		    }
+	    } else {
+	    	for (int i = 1; i < snake.size(); i++) {
+		        //if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y && snake.get(0).x != snake.get(1).x && snake.get(0).y != snake.get(1).y) {
+		        if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y) {
+		            gameOver = true;
+		        }
+		    }
+	    }
+	    
 
 	    // background
 	    if (score < 5) {
@@ -185,7 +196,7 @@ public class Snake extends Application {
 	        }
 	        gc.fillRect(cornersize, cornersize, width * cornersize - 2 * cornersize, height * cornersize - 2 * cornersize);
 	    }
-		// random food color
+		// random color
 		Color Cl = Color.BROWN;
 
 		switch (foodcolor) {
