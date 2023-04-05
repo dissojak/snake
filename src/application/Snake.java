@@ -159,26 +159,34 @@ public class Snake extends Application {
 
 	    // self destroy
 	    for (int i = 1; i < snake.size(); i++) {
-	        if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y && snake.get(0).x != snake.get(1).x && snake.get(0).y != snake.get(1).y) {
+	        //if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y && snake.get(0).x != snake.get(1).x && snake.get(0).y != snake.get(1).y) {
+	        if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y) {
 	            gameOver = true;
 	        }
 	    }
-
-	    // background
-	    gc.setFill(Color.BLACK);
-	    gc.fillRect(cornersize, cornersize, width * cornersize - 2 * cornersize, height * cornersize - 2 * cornersize);
-
+	    
 	    // score
 	    gc.setFill(Color.CORAL);
 	    gc.setFont(Font.font("", FontWeight.BOLD, 20));
-	    gc.fillText("Score: " + (snake.size() - 3), 5, 20);
+	    int score=(snake.size() - 3);
+	    gc.fillText("Score: " + score, 5, 20);
 	    Text scoreText = new Text("Score: " + (snake.size() - 3));
 	    scoreText.setId("score");
 
-	    
-
+	    // background
+	    if (score < 5) {
+	        gc.setFill(Color.BLACK);
+	        gc.fillRect(cornersize, cornersize, width * cornersize - 2 * cornersize, height * cornersize - 2 * cornersize);
+	    } else {
+	        if (score % 10 >= 5) {
+	            gc.setFill(Color.WHITE);
+	        } else {
+	            gc.setFill(Color.BLACK);
+	        }
+	        gc.fillRect(cornersize, cornersize, width * cornersize - 2 * cornersize, height * cornersize - 2 * cornersize);
+	    }
 		// random food color
-		Color Cl = Color.WHITE;
+		Color Cl = Color.BROWN;
 
 		switch (foodcolor) {
 		case 0:
@@ -201,18 +209,46 @@ public class Snake extends Application {
 		gc.fillOval(foodX * cornersize, foodY * cornersize, cornersize, cornersize);
 
 		// snake
-		for (int i = 0; i < snake.size(); i++) {
-		    Corner c = snake.get(i);
-		    if (i == 0) {
-		        // head of the snake
-		        gc.setFill(Color.RED);
-		    } else {
-		        // body of the snake
-		        gc.setFill(Color.WHITE);
-		    }
-		    gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
+		if (score < 5) {
+			for (int i = 0; i < snake.size(); i++) {
+			    Corner c = snake.get(i);
+			    if (i == 0) {
+			        // head of the snake
+			        gc.setFill(Color.RED);
+			    } else {
+			        // body of the snake
+			        gc.setFill(Color.WHITE);
+			    }
+			    gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
+			}
+		} else {
+				if (score % 10 >= 5) {
+					for (int i = 0; i < snake.size(); i++) {
+					    Corner c = snake.get(i);
+					    if (i == 0) {
+					        // head of the snake
+					        gc.setFill(Color.RED);
+					    } else {
+					        // body of the snake
+					        gc.setFill(Color.BLACK);
+					    }
+					    gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
+					}
+				} else {
+					for (int i = 0; i < snake.size(); i++) {
+					    Corner c = snake.get(i);
+					    if (i == 0) {
+					        // head of the snake
+					        gc.setFill(Color.RED);
+					    } else {
+					        // body of the snake
+					        gc.setFill(Color.WHITE);
+					    }
+					    gc.fillRect(c.x * cornersize, c.y * cornersize, cornersize - 1, cornersize - 1);
+					}
+				}
+	
 		}
-
 	}
 
 	// food
